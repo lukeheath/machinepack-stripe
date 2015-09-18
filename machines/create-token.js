@@ -6,6 +6,18 @@ module.exports = {
   cacheable: false,
 
   inputs: {
+
+    apiKey: {
+      description: 'Your Stripe API key',
+      whereToGet: {
+        url: 'https://dashboard.stripe.com/account/apikeys',
+        description: 'Copy either "Test Secret Key" or "Live Secret Key" from your Stripe dashboard.',
+        extendedDescription: 'Make sure you are logged in to your Stripe account, or create an account if you have not already done so.'
+      },
+      example: 'somestring837483749blah',
+      required: true
+    },
+
     cardNumber: {
       description: 'Credit card number',
       whereToGet: {
@@ -16,6 +28,7 @@ module.exports = {
       example: '4242424242424242',
       required: true
     },
+
     expMonth: {
       description: 'Expiration month',
       whereToGet: {
@@ -26,6 +39,7 @@ module.exports = {
       example: 12,
       required: true
     },
+
     expYear: {
       description: 'Expiration year',
       whereToGet: {
@@ -36,6 +50,7 @@ module.exports = {
       example: 2020,
       required: true
     },
+
     cvc: {
       description: 'CVC',
       whereToGet: {
@@ -46,6 +61,7 @@ module.exports = {
       example: 123,
       required: true
     }
+
   },
 
   defaultExit: 'success',
@@ -59,37 +75,7 @@ module.exports = {
       description: 'New card token was created',
       variableName: 'newToken',
       example: {
-        id: 'tok_16mO8zH3RtMvL54SBlXjudIq',
-        livemode: false,
-        created: 1442579953,
-        used: false,
-        object: 'token',
-        type: 'card',
-        card: { 
-          id: 'card_16mO8zH3RtMvL54Sbp0zgrqf',
-          object: 'card',
-          last4: '4242',
-          brand: 'Visa',
-          funding: 'credit',
-          exp_month: 12,
-          exp_year: 2016,
-          fingerprint: 'PkKUd4Jwwe2OYDY5',
-          country: 'US',
-          name: null,
-          address_line1: null,
-          address_line2: null,
-          address_city: null,
-          address_state: null,
-          address_zip: null,
-          address_country: null,
-          cvc_check: 'unchecked',
-          address_line1_check: null,
-          address_zip_check: null,
-          tokenization_method: null,
-          dynamic_last4: null,
-          metadata: {} },
-          client_ip: '70.114.233.42' 
-        }
+        id: 'tok_16mO8zH3RtMvL54SBlXjudIq'
       }
     } 
   },
@@ -100,7 +86,7 @@ module.exports = {
 
     stripe.tokens.create({
       card: {
-        number: inputs.token,
+        number: inputs.cardNumber,
         exp_month: inputs.expMonth,
         exp_year: inputs.expYear,
         cvc: inputs.cvc

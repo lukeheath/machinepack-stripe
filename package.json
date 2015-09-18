@@ -36,6 +36,7 @@
       "create-card",
       "create-charge",
       "create-customer",
+      "create-token",
       "delete-card",
       "list-cards",
       "subscribe-customer",
